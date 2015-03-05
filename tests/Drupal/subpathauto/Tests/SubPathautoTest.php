@@ -1,9 +1,9 @@
 <?php
 
 /**
-* @file
-* Contains \Drupal\subpathauto\Tests\SubPathautoTest.
-*/
+ * @file
+ * Contains \Drupal\subpathauto\Tests\SubPathautoTest.
+ */
 
 namespace Drupal\subpathauto\Tests;
 
@@ -15,12 +15,15 @@ use Symfony\Component\HttpFoundation\Request;
 use Drupal\subpathauto\PathProcessor;
 
 /**
-* Unit tests for Sub-Pathauto functaionality/
-*/
+ * Unit tests for Sub-Pathauto functaionality.
+ */
 class SubPathautoTest extends UnitTestCase {
 
   protected $processorManager;
 
+  /**
+   * Function getInfo().
+   */
   public static function getInfo() {
     return array(
       'name' => 'SubPathauto',
@@ -62,7 +65,6 @@ class SubPathautoTest extends UnitTestCase {
     // has been implemented.
   }
 
-
   /**
    * Tests the basic functionality of the processInbound() method.
    */
@@ -79,28 +81,31 @@ class SubPathautoTest extends UnitTestCase {
     $processed = $subpath_processor->processInbound('node/1', Request::create('content/first-node'));
   }
   /**
-   * Return value callback for the getSystemPath() method on the mock alias manager.
+   * Return value callback for getSystemPath() method on the mock alias manager.
    *
-   * Ensures that by default the call to getPathAlias() will return the first argument
-   * that was passed in. We special-case the paths for which we wish it to return an
-   * actual alias.
+   * Ensures that by default the call to getPathAlias() will return the
+   * first argument that was passed in. We special-case the paths for
+   * which we wish it to return an actual alias.
    *
    * @return string
    */
   public function pathAliasCallback() {
     $args = func_get_args();
-    switch($args[0]) {
+    switch ($args[0]) {
       case 'content/first-node':
         return 'node/1';
+
       case 'content/first-node-test':
         return 'node/1/test';
+
       case 'malicious-path':
         return 'admin';
+
       case '':
         return '<front>';
+
       default:
         return $args[0];
     }
   }
-
 }
