@@ -19,7 +19,7 @@ class PathProcessor implements InboundPathProcessorInterface, OutboundPathProces
   protected $pathProcessor;
 
   /**
-   * Function __construct().
+   * {@inheritdoc}
    */
   public function __construct(InboundPathProcessorInterface $path_processor) {
     $this->pathProcessor = $path_processor;
