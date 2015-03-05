@@ -1,0 +1,4 @@
+name: Sub-pathauto
+type: module
+description: Provides support for extending sub-paths of URL aliases.
+core: 8.x
