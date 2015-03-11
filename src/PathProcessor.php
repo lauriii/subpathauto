@@ -18,6 +18,9 @@ class PathProcessor implements InboundPathProcessorInterface, OutboundPathProces
 
   protected $pathProcessor;
 
+  /**
+   * {@inheritdoc}
+   */
   public function __construct(InboundPathProcessorInterface $path_processor) {
     $this->pathProcessor = $path_processor;
   }
@@ -85,7 +88,7 @@ class PathProcessor implements InboundPathProcessorInterface, OutboundPathProces
     $parts = explode('/', ltrim($path_info, '/'));
     $prefix = array_shift($parts);
     $request_path = '';
-    
+
     // Search prefix within added languages.
     foreach (\Drupal::languageManager()->getLanguages() as $language) {
       if (isset($config['prefixes'][$language->getId()]) && $config['prefixes'][$language->getId()] == $prefix) {
@@ -94,5 +97,4 @@ class PathProcessor implements InboundPathProcessorInterface, OutboundPathProces
       }
     }
   }
-
 }
